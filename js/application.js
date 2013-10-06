@@ -23,7 +23,34 @@ $(function() {
     interval: 100
   });
 
-  $(".upload_artwork_form").submit(function() {
+
+   $(".upload_artwork_form").submit(function() {
+     $(this).ajaxSubmit({
+        type: $(this).attr("method"),
+        url: $(this).attr("action"),
+        data: $(this).serialize(),
+        beforeSubmit: function() {
+            //if (!confirm("Are you sure?")){
+             // return false;
+            //}
+             console.log('before send');
+             $(".form_status").hide();
+             $(".form_loader").show();
+          },
+        success: function(data) {
+          $(".form_loader").hide();
+          $(".form_status").empty().show();
+          $(".form_status").html(data);
+          console.log('data');
+          console.log(data);
+
+        }
+      });
+      return false;
+    });
+
+
+  $(".rwrupload_artwork_form").submit(function() {
       console.log($(this).attr("action"));
         $.ajax({
           url: $(this).attr("action"),

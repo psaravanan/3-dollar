@@ -1,8 +1,11 @@
 <?php
+
+
 if(isset($_POST['email'])) {
      
     // EDIT THE 2 LINES BELOW AS REQUIRED
-    $email_to = "vectorizing.service.3dollar@gmail.com";
+    #$email_to = "vectorizing.service.3dollar@gmail.com";
+    $email_to = "psaravanan11@gmail.com";
     $email_subject = "Someone send Artwork hey :)";
      
      
@@ -48,12 +51,10 @@ if(isset($_POST['email'])) {
     }
 
 
-$upload_name=$_FILES["artwork"]["name"];
-$upload_type=$_FILES["artwork"]["type"];
-$upload_size=$_FILES["artwork"]["size"];
-$upload_temp=$_FILES["artwork"]["tmp_name"];
-echo $_FILES["artwork"];
-echo $upload_temp;
+$upload_name=$_FILES["file"]["name"];
+$upload_type=$_FILES["file"]["type"];
+$upload_size=$_FILES["file"]["size"];
+$upload_temp=$_FILES["file"]["tmp_name"];
 
     $fp = fopen($upload_temp, "rb");
     $file = fread($fp, $upload_size);

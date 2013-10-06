@@ -3,6 +3,7 @@ if(isset($_POST['email'])) {
      
     // EDIT THE 2 LINES BELOW AS REQUIRED
     $email_to = "vectorizing.service.3dollar@gmail.com";
+    //$email_to = "psaravanan11@gmail.com";
     $email_subject = "Someone send feedback hey :)";
      
      
@@ -48,19 +49,6 @@ if(isset($_POST['email'])) {
     }
 
 
-$upload_name=$_FILES["artwork"]["name"];
-$upload_type=$_FILES["artwork"]["type"];
-$upload_size=$_FILES["artwork"]["size"];
-$upload_temp=$_FILES["artwork"]["tmp_name"];
-echo $_FILES["artwork"];
-echo $upload_temp;
-
-    $fp = fopen($upload_temp, "rb");
-    $file = fread($fp, $upload_size);
-
-    $file = chunk_split(base64_encode($file));
-    $num = md5(time());
-
      
     $email_message .= "Name: ".clean_string($name)."\n";
     $email_message .= "Email: ".clean_string($email)."\n";
@@ -70,30 +58,11 @@ echo $upload_temp;
 // create email headers
 
 
-    $headers .= "Content-Type: text/html; charset=iso-8859-1\r\n";
-       $headers .= "Content-Transfer-Encoding: 8bit\r\n";
-       $headers .= "".$description."\n";
-       $headers .= "--".$num."\n";
+$headers = 'From: '.$email."\r\n".
+'Reply-To: '.$email."\r\n" .
+'X-Mailer: PHP/' . phpversion();
 
-        // Attachment headers
-
-    $headers  .= "Content-Type:".$upload_type." ";
-       $headers  .= "name=\"".$upload_name."\"r\n";
-       $headers  .= "Content-Transfer-Encoding: base64\r\n";
-       $headers  .= "Content-Disposition: attachment; ";
-       $headers  .= "filename=\"".$upload_name."\"\r\n\n";
-       $headers  .= "".$file."\r\n";
-       $headers  .= "--".$num."--";
-    // SEND MAIL
-       @mail($to, $subject, $message, $headers);
-     fclose($fp);
-
-
-//$headers = 'From: '.$email."\r\n".
-//'Reply-To: '.$email."\r\n" .
-//'X-Mailer: PHP/' . phpversion();
-
-//@mail($email_to, $email_subject, $email_message, $headers);
+@mail($email_to, $email_subject, $email_message, $headers);
 ?>
  
 <!-- include your own success html here -->

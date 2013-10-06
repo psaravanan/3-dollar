@@ -292,7 +292,8 @@
 
       <div class="row well">
         <div class="col-lg-6 col-md-4">
-          <form action="send_artwork.php" method="post" class="upload_artwork_form" role="form">
+          <form method="post" action="send_artwork.php" enctype="multipart/form-data" class="upload_artwork_form">
+
             <h4>Note: Currently Upload form not functioning. So please send your ArtWorks to vectorizing.service.3dollar@gmail.com</h4>
             <h2>Upload your ArtWork</h2>
             <div class="form-group">
@@ -305,7 +306,7 @@
               <textarea class="form-control" name="description" rows="5" placeholder="Description"></textarea>
             </div>
             <div class="form-group">
-              <input type="file" name="artwork" id="exampleInputFile">
+              <input type="file" name="file" id="exampleInputFile">
               <p class="help-block">Please upload your image ArtWork here.</p>
             </div>
             <input type="submit" class="btn btn-primary" style="float:left;">
@@ -342,6 +343,7 @@
     <!-- Bootstrap core JavaScript -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/jquery.js"></script>
+    <script src="js/jquery.form.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/modern-business.js"></script>
     <script src="js/jquery.feedBackBox.js"></script>
