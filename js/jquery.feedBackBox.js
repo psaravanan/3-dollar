@@ -41,7 +41,7 @@
                 isUsernameEnabled: true,
                 isEmailEnabled: true,
                 message: '',
-                ajaxUrl: '/feedbacks',
+                ajaxUrl: 'feedback.php',
                 successMessage: 'Thank your for your feedback.',
                 errorMessage: 'Something wen\'t wrong!'
             };
@@ -66,15 +66,15 @@
                     + thisSettings.title
                     + '</h2></div><div id="fpi_content"><div id="fpi_header_message"><h3 style="margin: 10px 0;">'
                     + thisSettings.titleMessage
-                    + '</h3></div><form><div id="fpi_submit_username" class="form-group"><input type="text" class="form-control" placeholder="Name" name="feedbacke[username]" '
+                    + '</h3></div><form action="feedback.php" class="feedback_form"><div id="fpi_submit_username" class="form-group"><input name="name" type="text" class="form-control" placeholder="Name" '
                     + diableUsername
                     + ' value="'
                     + thisSettings.userName
-                    + '"></div><div id="fpi_submit_email" class="form-group"><input type="email" class="form-control" placeholder="Email" name="feedbacke[email]" '
+                    + '"></div><div id="fpi_submit_email" class="form-group"><input type="email" class="form-control" placeholder="Email" name="email" '
                     + diableEmail
                     + ' value="'
                     + thisSettings.eMail
-                    + '"></div><div id="fpi_submit_message" class="form-group"><textarea class="form-control" placeholder="Message" name="feedbacke[message]"></textarea></div>'
+                    + '"></div><div id="fpi_submit_message" class="form-group"><textarea class="form-control" placeholder="Message" name="description"></textarea></div>'
                     + '<div id="fpi_submit_loading"></div><input type="submit" style="margin-left: 5px;" class="btn btn-primary" value="Submit">'
 					+ '</form><div id="fpi_ajax_message"><h2></h2></div></div></div>');
 
@@ -118,7 +118,7 @@
                         // disable submit button
                         $('#fpi_submit_submit input').attr('disabled', 'disabled');
 
-                        $.ajax({
+                        /*$.ajax({
                             type: 'POST',
                             dataType: 'json',
                             url: thisSettings.ajaxUrl,
@@ -134,7 +134,7 @@
                                 $('#fpi_content form').hide();
                                 $('#fpi_content #fpi_ajax_message h2').html(thisSettings.successMessage);
                             }
-                        });
+                        });*/
                     }
 
                     return false;

@@ -44,4 +44,30 @@ $(function() {
         });
         return false;
   });
+
+
+  $(".feedback_form").submit(function() {
+      console.log($(this).attr("action"));
+        $.ajax({
+          url: $(this).attr("action"),
+          type: 'POST',
+          data: $(this).serialize(),
+          beforeSend: function() {
+             console.log('before send');
+             //$(".form_status").hide();
+             //$(".form_loader").show();
+          },
+          success: function(data) {
+            //$(".form_loader").hide();
+            //$(".form_status").empty().show();
+            //$(".form_status").html(data);
+            $(".feedback_form")[0].reset();
+            $('#fpi_title').click();
+            alert("Thank You for your valuable feedback.");
+            console.log('data');
+            console.log(data);
+          }
+        });
+        return false;
+  });  
 });
