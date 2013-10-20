@@ -1,6 +1,7 @@
 $(function() {
+  
   $('a[href*=#]:not([href=#]).smoth_scroll').click(function() {
-    console.log("application js called");
+
     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
         || location.hostname == this.hostname) {
 
@@ -41,6 +42,7 @@ $(function() {
           $(".form_loader").hide();
           $(".form_status").empty().show();
           $(".form_status").html(data);
+          $(".upload_artwork_form")[0].reset();
           console.log('data');
           console.log(data);
 
@@ -48,29 +50,6 @@ $(function() {
       });
       return false;
     });
-
-
-  $(".rwrupload_artwork_form").submit(function() {
-      console.log($(this).attr("action"));
-        $.ajax({
-          url: $(this).attr("action"),
-          type: 'POST',
-          data: $(this).serialize(),
-          beforeSend: function() {
-             console.log('before send');
-             $(".form_status").hide();
-             $(".form_loader").show();
-          },
-          success: function(data) {
-            $(".form_loader").hide();
-            $(".form_status").empty().show();
-            $(".form_status").html(data);
-            console.log('data');
-            console.log(data);
-          }
-        });
-        return false;
-  });
 
 
   $(".feedback_form").submit(function() {

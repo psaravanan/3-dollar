@@ -1,0 +1,47 @@
+<script>
+$( document ).ready(function(){
+
+  $("#pay_using_paypal").click(function() {
+    var cost = $("#cost").val();
+    if(isNaN(parseFloat(cost))){
+      alert("Please enter valid amount.");
+      return false;
+    }else if(parseFloat(cost) <= 0){
+      alert("Please enter valid amount.");
+      return false;
+    }
+    $.ajax({
+      url: "http://dollar-3.herokuapp.com/paypal?cost="+cost,
+      dataType: 'jsonp',
+      type: "post",
+      beforeSend: function() {
+        $(".loader").show();
+      },
+      success: function(data) {
+        $(".loader").hide();
+        console.log(data.success);
+        window.location.href=data.success;
+      }
+    });
+    return false;
+  });
+}); 
+
+</script>
+<style>
+.content, .popup{
+  width: 630px !important;
+}
+</style>
+<div class="paypal_form">
+  <div class="paypal_title_img"><img src="images/logo.png" width="321" class="logo"/></div>
+  <h3 class="cost_label">Vector Conversion cost</h3>
+  <div class="cost_group input-group">
+    <span class="input-group-addon">$</span>
+    <input type="text" id="cost" class="form-control" />
+  </div>
+  <div class="submit_loader">
+    <button id="pay_using_paypal" type="button" class="btn btn-primary">Submit</button>
+    <span class="loader"><img src="images/loading.gif" /></span>
+  </div>
+</div>
